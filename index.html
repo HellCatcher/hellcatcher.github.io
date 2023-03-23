@@ -1,10 +1,48 @@
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width">
-  </head>
-  <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="src/styles/main.css">
+
+    <title>loabing зогруска</title>
+</head>
+<body>
+    <audio autoplay loop>
+        <source src="src/media/audio.ogg" type="audio/ogg">
+    </audio>
+
     <video autoplay loop>
-      <source src="gmod.mp4" type="video/mp4">
+        <source src="src/media/video.webm" type="video/webm">
     </video>
-  </body>
+    
+    <div id="status-container">
+        <div id="status"></div>
+        <div id="loading">
+			<div id="loading-progress"></div>
+		</div>
+		<div id="messages"></div>
+    </div>
+
+    <div id="overlay">
+        <p id="servername">servername</p>
+        <p id="serverurl">serverurl</p>
+        <p id="mapname">mapname</p>
+        <p id="maxplayers">maxplayers</p>
+        <p id="steamid">steamid</p>
+        <p id="gamemode">gamemode</p>
+        <p id="volume">volume</p>
+        <p id="language">language</p>
+        <br>
+        <p id="SetFilesTotal">SetFilesTotal</p>
+        <p id="DownloadingFile">DownloadingFile</p>
+        <p id="SetStatusChanged">SetStatusChanged</p>
+        <p id="SetFilesNeeded">SetFilesNeeded</p>
+    </div>
+
+    <script src="src/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</body>
 </html>
