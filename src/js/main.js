@@ -23,16 +23,7 @@ var downloadedFiles = 0;
 	language - The value of the player's in-game 'gmod_language' console variable, a two letter representation of the player's main menu language
 */
 function GameDetails( servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, language ) {
-	$("audio").prop('volume', volume)
-}
-
-/*
-	Called at the start
-
-	total- Total number of files the client will have to download.
-*/
-function SetFilesTotal( total ) {
-    
+	$("audio").prop('volume', Math.max(parseFloat(volume), 0.5))
 }
 
 /*
