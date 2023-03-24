@@ -26,8 +26,9 @@ body {
 }
 
 #loading {
+	margin-left: -50%;
 	display: inline-block;
-	width: 90%;
+	width: calc(90% - 400px);
 	height: 6px;
 	background-color: rgba(255, 255, 255, 0.25);
     border-radius: 25px;

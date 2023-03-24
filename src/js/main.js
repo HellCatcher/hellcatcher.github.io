@@ -1,3 +1,6 @@
+var neededFiles;
+var downloadedFiles = 0;
+
 /*
 	Called at the start, when the loading screen finishes loading all assets.
 	
@@ -20,14 +23,7 @@
 	language - The value of the player's in-game 'gmod_language' console variable, a two letter representation of the player's main menu language
 */
 function GameDetails( servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, language ) {
-    $("#servername").html(servername);
-    $("#serverurl").html(serverurl);
-    $("#mapname").html(mapname);
-    $("#maxplayers").html(maxplayers);
-    $("#steamid").html(steamid);
-    $("#gamemode").html(gamemode);
-    $("#volume").html(volume);
-    $("#language").html(language);
+	$("audio").prop('volume', volume)
 }
 
 /*
@@ -36,7 +32,7 @@ function GameDetails( servername, serverurl, mapname, maxplayers, steamid, gamem
 	total- Total number of files the client will have to download.
 */
 function SetFilesTotal( total ) {
-    $("#SetFilesTotal").html(total);
+    
 }
 
 /*
@@ -48,7 +44,8 @@ function SetFilesTotal( total ) {
 			"materials/models/bobsModels/car.mdl"
 */
 function DownloadingFile( fileName ) {
-    $("#DownloadingFile").html(fileName);
+	downloadedFiles++;
+	refreshProgress();
 }
 
 /*
@@ -61,7 +58,12 @@ function DownloadingFile( fileName ) {
 	means you probably can't use "Retrieving server info" and everything that goes before downloads.
 */
 function SetStatusChanged( status ) {
-    $("#SetStatusChanged").html(status);
+    if (status.indexOf("Downloading the addon named : #") != -1) {
+		downloadedFiles++;
+		refreshProgress();
+	}else if (status == "Sending Client Info") {
+		setProgress(100);
+	}
 }
 
 /*
@@ -70,7 +72,14 @@ function SetStatusChanged( status ) {
 	needed- Number of files left for the client to download.
 */
 function SetFilesNeeded( needed ) {
-    $("#SetFilesNeeded").html(needed);
+    neededFiles = needed + 1;
 }
 
-$("audio").prop('volume', 1)
+/*
+	Это деду надо блин
+*/
+function refreshProgress() {
+	progress = Math.floor(((downloadedFiles / neededFiles)*100));
+
+	$("#loading-progress").css("width", progress + "%");
+}
