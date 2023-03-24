@@ -27,9 +27,9 @@ body {
 
 #loading {
 	margin-left: 5%;
-	margin-right: 400px;
+	margin-right: calc(400px + 5%);
 	display: inline-block;
-	width: calc(100% - 400px - 5%);
+	width: calc(90% - 400px);
 	height: 6px;
 	background-color: rgba(255, 255, 255, 0.25);
     border-radius: 25px;
