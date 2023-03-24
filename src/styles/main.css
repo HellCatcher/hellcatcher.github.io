@@ -26,7 +26,7 @@ body {
 }
 
 #loading {
-	margin-left: -50%;
+	margin-left: -25%;
 	display: inline-block;
 	width: calc(90% - 400px);
 	height: 6px;
