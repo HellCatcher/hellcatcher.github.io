@@ -1,6 +1,3 @@
-var neededFiles;
-var downloadedFiles = 0;
-
 /*
 	Called at the start, when the loading screen finishes loading all assets.
 	
@@ -23,7 +20,7 @@ var downloadedFiles = 0;
 	language - The value of the player's in-game 'gmod_language' console variable, a two letter representation of the player's main menu language
 */
 function GameDetails( servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, language ) {
-	$("audio").prop('volume', Math.max(parseFloat(volume), 0.5))
+	$("audio").prop('volume', 0.5)
 }
 
 /*
@@ -34,10 +31,7 @@ function GameDetails( servername, serverurl, mapname, maxplayers, steamid, gamem
 		For example, the file "garrysmod/addons/myAddon/materials/models/bobsModels/car.mdl" will be:
 			"materials/models/bobsModels/car.mdl"
 */
-function DownloadingFile( fileName ) {
-	downloadedFiles++;
-	refreshProgress();
-}
+function DownloadingFile( fileName ) {}
 
 /*
 	Called when the client's joining status changes.
@@ -48,29 +42,11 @@ function DownloadingFile( fileName ) {
 	Under normal conditions this would not be fired until game client starts interacting with server files/workshop. This
 	means you probably can't use "Retrieving server info" and everything that goes before downloads.
 */
-function SetStatusChanged( status ) {
-    if (status.indexOf("Downloading the addon named : #") != -1) {
-		downloadedFiles++;
-		refreshProgress();
-	}else if (status == "Sending Client Info") {
-		setProgress(100);
-	}
-}
+function SetStatusChanged( status ) {}
 
 /*
 	Called when the number of files remaining for the client to download changes.
 
 	needed- Number of files left for the client to download.
 */
-function SetFilesNeeded( needed ) {
-    neededFiles = needed + 1;
-}
-
-/*
-	Это деду надо блин
-*/
-function refreshProgress() {
-	progress = Math.floor(((downloadedFiles / neededFiles)*100));
-
-	$("#loading-progress").css("width", progress + "%");
-}
+function SetFilesNeeded( needed ) {}
